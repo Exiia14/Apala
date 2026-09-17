@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisi-Kisi Tugas - SD Plus Gembala Baik</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Fira Sans"', 'sans-serif'] },
+                    colors: {
+                        cream: '#FAF7F2', main: '#3A322C',
+                        primary: { DEFAULT: '#A9784F', dark: '#7A5738' },
+                        status: { success: '#4B7B5D', pending: '#C08A3E', danger: '#B0483A' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+    </style>
+</head>
+<body class="bg-cream text-main font-sans antialiased flex h-screen overflow-hidden">
+
+    <!-- Sidebar Layout -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-10 shadow-sm shrink-0">
+        <div class="p-6 border-b border-gray-200">
+            <h1 class="text-xl font-bold text-primary-dark leading-tight">SD Plus<br>Gembala Baik</h1>
+            <p class="text-xs text-gray-500 mt-1">Manajemen Akademik</p>
+        </div>
+        <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 mt-6">Modul Jadwal Guru</div>
+            <a href="#" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Waktu Pelajaran</a>
+            <!-- Menu Kisi-Kisi Aktif -->
+            <a href="#" class="flex items-center px-3 py-2 bg-primary/10 text-primary-dark rounded-md text-sm font-medium border-l-4 border-primary">Kisi-Kisi Tugas</a>
+            <a href="#" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Pembagian Jadwal</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm z-0 shrink-0">
+            <div>
+                <h2 class="text-2xl font-bold text-primary-dark">Master Kisi-Kisi Tugas</h2>
+                <div class="flex items-center gap-2 mt-1">
+                    <span class="text-sm font-medium bg-gray-100 px-2 py-0.5 rounded text-gray-600">TA: 2026/2027</span>
+                </div>
+            </div>
+            <div class="flex gap-3 items-center">
+                <button class="bg-white border border-gray-300 text-main hover:bg-gray-50 text-sm font-medium px-4 py-2 rounded-md flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                    Import Excel
+                </button>
+                <button class="bg-primary hover:bg-primary-dark text-white text-sm font-medium px-4 py-2 rounded-md shadow-sm transition-colors" onclick="document.getElementById('modal-tambah').classList.remove('hidden')">+ Tambah Tugas</button>
+            </div>
+        </header>
+
+        <!-- Content Body -->
+        <div class="flex-1 overflow-auto custom-scrollbar p-8">
+            <div class="max-w-6xl mx-auto space-y-6">
+                
+                <!-- Panel Validasi Kuota per Kelas -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Monitor Kuota Jam Utama per Kelas</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        <!-- Kelas 1A -->
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col">
+                            <span class="text-lg font-bold text-main">Kelas 1A</span>
+                            <div class="flex justify-between items-end mt-2">
+                                <span class="text-xs text-gray-500">Terisi: <span class="font-bold text-status-pending text-sm">48</span>/53</span>
+                                <div class="w-12 h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="bg-status-pending h-full w-[90%]"></div></div>
+                            </div>
+                        </div>
+                        <!-- Kelas 1B -->
+                        <div class="bg-white p-4 rounded-lg border border-green-200 shadow-sm flex flex-col relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-8 h-8 bg-status-success/10 rounded-bl-full"></div>
+                            <span class="text-lg font-bold text-main">Kelas 1B</span>
+                            <div class="flex justify-between items-end mt-2">
+                                <span class="text-xs text-gray-500">Terisi: <span class="font-bold text-status-success text-sm">53</span>/53</span>
+                                <div class="w-12 h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="bg-status-success h-full w-full"></div></div>
+                            </div>
+                        </div>
+                        <!-- Kelas 2A -->
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col">
+                            <span class="text-lg font-bold text-main">Kelas 2A</span>
+                            <div class="flex justify-between items-end mt-2">
+                                <span class="text-xs text-gray-500">Terisi: <span class="font-bold text-gray-700 text-sm">12</span>/53</span>
+                                <div class="w-12 h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="bg-primary h-full w-[25%]"></div></div>
+                            </div>
+                        </div>
+                        <!-- Kelas 2B -->
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col">
+                            <span class="text-lg font-bold text-main">Kelas 2B</span>
+                            <div class="flex justify-between items-end mt-2">
+                                <span class="text-xs text-gray-500">Terisi: <span class="font-bold text-gray-700 text-sm">24</span>/53</span>
+                                <div class="w-12 h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="bg-primary h-full w-[45%]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Filter & Search -->
+                <div class="flex justify-between items-center bg-white p-3 rounded-t-lg border border-gray-200 border-b-0">
+                    <div class="flex items-center gap-4 text-sm">
+                        <span class="font-medium text-gray-600">Filter Tipe:</span>
+                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" checked class="accent-blue-500 w-4 h-4"> Utama</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" checked class="accent-orange-500 w-4 h-4"> Damping</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" checked class="accent-purple-500 w-4 h-4"> Piket</label>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Cari nama guru atau kelas..." class="px-3 py-1.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-primary w-64">
+                    </div>
+                </div>
+
+                <!-- Table Data -->
+                <div class="bg-white rounded-b-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left font-bold text-main uppercase tracking-wider">Nama Guru</th>
+                                <th scope="col" class="px-6 py-3 text-left font-bold text-main uppercase tracking-wider">Tipe Tugas</th>
+                                <th scope="col" class="px-6 py-3 text-left font-bold text-main uppercase tracking-wider">Keterangan / Mapel</th>
+                                <th scope="col" class="px-6 py-3 text-center font-bold text-main uppercase tracking-wider">Kelas Tujuan</th>
+                                <th scope="col" class="px-6 py-3 text-center font-bold text-main uppercase tracking-wider">Alokasi Jam</th>
+                                <th scope="col" class="px-6 py-3 text-right font-bold text-main uppercase tracking-wider">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Baris: Mengajar Utama + Ada Pendampingnya -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-main">Ayu (AY)</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">Utama</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-gray-700">B. Indonesia (BI)</div>
+                                    <!-- Indikator Pasangan Master Data -->
+                                    <div class="text-[10px] text-gray-500 mt-0.5 flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                        </svg>
+                                        Damping: Lydia (LYD)
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-medium">1A</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-primary">2 Jam</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primary-dark mr-3">Edit</button>
+                                    <button class="text-status-danger hover:text-red-700">Hapus</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Baris: Mengajar Utama -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-main">Ruben (RB)</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">Utama</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">Matematika (MAT)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-medium">1B</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-primary">4 Jam</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primary-dark mr-3">Edit</button>
+                                    <button class="text-status-danger hover:text-red-700">Hapus</button>
+                                </td>
+                            </tr>
+
+                            <!-- Baris: Damping -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-main">Lydia (LYD)</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-800">Damping</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700 italic text-sm">Pendamping Guru Utama</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-medium">1A</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-primary">2 Jam</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primary-dark mr-3">Edit</button>
+                                    <button class="text-status-danger hover:text-red-700">Hapus</button>
+                                </td>
+                            </tr>
+
+                            <!-- Baris: Piket -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap font-bold text-main">Devi (DV)</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">Piket</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">Tugas Piket Umum</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-gray-400">-</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-primary">3 Jam</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primary-dark mr-3">Edit</button>
+                                    <button class="text-status-danger hover:text-red-700">Hapus</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Form (Hidden by default) -->
+    <div id="modal-tambah" class="fixed inset-0 z-50 bg-gray-900/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                <h3 class="text-lg font-bold text-main">Tambah Kisi-Kisi Tugas</h3>
+                <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('modal-tambah').classList.add('hidden')">&times;</button>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <!-- Pilihan Guru -->
+                <div>
+                    <label class="block text-sm font-medium text-main mb-1">Guru</label>
+                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary bg-white">
+                        <option>Ayu (AY)</option>
+                        <option>Lydia (LYD)</option>
+                        <option>Angela (A)</option>
+                        <option>Ruben (RB)</option>
+                        <option>Devi (DV)</option>
+                    </select>
+                </div>
+
+                <!-- Pilihan Tipe -->
+                <div>
+                    <label class="block text-sm font-medium text-main mb-1">Jenis Tugas</label>
+                    <select id="master-tipe" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary bg-white">
+                        <option value="utama">Mengajar Utama</option>
+                        <option value="damping">Guru Pendamping</option>
+                        <option value="piket">Tugas Piket</option>
+                    </select>
+                </div>
+
+                <!-- Input Dinamis Berdasarkan Tipe -->
+                <div id="dynamic-inputs" class="space-y-4 p-4 border border-gray-100 bg-gray-50/50 rounded-md">
+                    
+                    <!-- Form Mapel (Hanya Utama) -->
+                    <div id="field-mapel">
+                        <label class="block text-sm font-medium text-main mb-1">Mata Pelajaran</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary bg-white">
+                            <option>B. Indonesia (BI)</option>
+                            <option>Matematika (MAT)</option>
+                            <option>B. Inggris (ENG)</option>
+                        </select>
+                    </div>
+
+                    <!-- [FITUR BARU] Form Pasangan Damping (Hanya Utama) -->
+                    <div id="field-pasangan">
+                        <label class="block text-sm font-medium text-main mb-1">Pasangkan dgn Damping <span class="font-normal text-gray-400 text-xs">(Opsional)</span></label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary bg-white">
+                            <option value="">-- Tidak ada pendamping --</option>
+                            <option value="lydia">Lydia (LYD)</option>
+                            <option value="cindy">Cindy (CF)</option>
+                        </select>
+                        <p class="text-[10px] text-gray-500 mt-1 leading-tight">Jika dipilih, saat guru ini dijadwalkan, sistem akan otomatis menarik jadwal guru pendamping ke kelas dan jam yang sama.</p>
+                    </div>
+
+                    <!-- Form Kelas (Utama & Damping) -->
+                    <div id="field-kelas">
+                        <label class="block text-sm font-medium text-main mb-1">Kelas Tujuan</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary bg-white">
+                            <option>Kelas 1A</option>
+                            <option>Kelas 1B</option>
+                            <option>Kelas 2A</option>
+                            <option>Kelas 2B</option>
+                        </select>
+                        <p class="text-[10px] text-gray-500 mt-1" id="info-kelas">Jam ini akan memotong kuota total jam kelas.</p>
+                    </div>
+
+                    <!-- Form Piket (Hanya Piket) -->
+                    <div id="field-piket" class="hidden">
+                        <label class="block text-sm font-medium text-main mb-1">Keterangan Piket</label>
+                        <input type="text" value="Tugas Piket Umum" readonly class="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-100 text-gray-500 focus:outline-none">
+                        <p class="text-[10px] text-gray-500 mt-1">Sesuai kesepakatan, tugas piket tidak memerlukan keterangan area spesifik.</p>
+                    </div>
+
+                </div>
+
+                <!-- Input Alokasi Jam (Semua Tipe) -->
+                <div>
+                    <label class="block text-sm font-medium text-main mb-1">Jumlah Jam / Alokasi</label>
+                    <input type="number" value="1" min="1" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-primary">
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-gray-200 flex justify-end gap-3 bg-gray-50">
+                <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50" onclick="document.getElementById('modal-tambah').classList.add('hidden')">Batal</button>
+                <button class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark" onclick="document.getElementById('modal-tambah').classList.add('hidden')">Simpan Tugas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Logic untuk Form Dinamis -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectTipe = document.getElementById('master-tipe');
+            const fieldMapel = document.getElementById('field-mapel');
+            const fieldPasangan = document.getElementById('field-pasangan');
+            const fieldKelas = document.getElementById('field-kelas');
+            const fieldPiket = document.getElementById('field-piket');
+            const infoKelas = document.getElementById('info-kelas');
+
+            selectTipe.addEventListener('change', (e) => {
+                const tipe = e.target.value;
+
+                if (tipe === 'utama') {
+                    fieldMapel.style.display = 'block';
+                    fieldPasangan.style.display = 'block'; // Pasangan cuma untuk guru utama
+                    fieldKelas.style.display = 'block';
+                    fieldPiket.style.display = 'none';
+                    infoKelas.textContent = "Jam ini akan memotong kuota total jam kelas utama.";
+                } 
+                else if (tipe === 'damping') {
+                    fieldMapel.style.display = 'none'; 
+                    fieldPasangan.style.display = 'none'; // Guru damping nggak bawa damping lagi
+                    fieldKelas.style.display = 'block'; 
+                    fieldPiket.style.display = 'none';
+                    infoKelas.textContent = "Guru pendamping tidak akan memotong kuota jam utama kelas.";
+                } 
+                else if (tipe === 'piket') {
+                    fieldMapel.style.display = 'none';
+                    fieldPasangan.style.display = 'none';
+                    fieldKelas.style.display = 'none'; 
+                    fieldPiket.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
