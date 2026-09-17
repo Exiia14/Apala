@@ -30,78 +30,97 @@
 
         .dragging { opacity: 0.5; cursor: grabbing !important; z-index: 50; }
         .drag-over { background-color: #f3f4f6 !important; border-color: #A9784F !important; }
+        .sticky-cell { background-clip: padding-box; }
     </style>
 </head>
 <body class="bg-cream text-main font-sans antialiased flex h-screen overflow-hidden">
 
     <!-- Sidebar Layout -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-10 shadow-sm shrink-0">
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-20 shadow-sm shrink-0">
         <div class="p-6 border-b border-gray-200">
             <h1 class="text-xl font-bold text-primary-dark leading-tight">SD Plus<br>Gembala Baik</h1>
             <p class="text-xs text-gray-500 mt-1">Manajemen Akademik</p>
         </div>
         <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
             <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 mt-6">Modul Jadwal Guru</div>
-            <a href="#" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Waktu Pelajaran</a>
-            <a href="#" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Kisi-Kisi Tugas</a>
-            <a href="#" class="flex items-center px-3 py-2 bg-primary/10 text-primary-dark rounded-md text-sm font-medium border-l-4 border-primary">Pembagian Jadwal</a>
+            <a href="Waktu-Pelajaran.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Waktu Pelajaran</a>
+            <a href="KisiKisiTugas.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Kisi-Kisi Tugas</a>
+            <a href="Pembagian-Jadwal-Guru.html" class="flex items-center px-3 py-2 bg-primary/10 text-primary-dark rounded-md text-sm font-medium border-l-4 border-primary">Pembagian Jadwal</a>
+            <a href="Hasil-Jadwal.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Hasil Jadwal</a>
         </nav>
     </aside>
 
     <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col overflow-hidden">
-        <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm z-0 shrink-0">
-            <div>
+    <main class="flex-1 flex flex-col overflow-hidden h-full">
+        <!-- HEADER UTAMA -->
+        <header class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between shadow-sm shrink-0 z-10">
+            <div class="flex flex-col">
                 <h2 class="text-2xl font-bold text-primary-dark">Pembagian Jadwal Mengajar</h2>
-                <div class="flex items-center gap-2 mt-1">
+                <div class="flex items-center mt-1">
                     <span class="text-sm font-medium bg-gray-100 px-2 py-0.5 rounded text-gray-600">TA: 2026/2027</span>
                 </div>
             </div>
-            <div class="flex gap-3 items-center">
-                <button class="bg-white border border-gray-300 text-main hover:bg-gray-50 text-sm font-medium px-4 py-2 rounded-md flex items-center gap-2">Preferensi Auto</button>
-                <button class="bg-main hover:bg-gray-800 text-white text-sm font-medium px-4 py-2 rounded-md shadow-sm">Auto-Scheduling</button>
+            <div class="flex items-center gap-3">
+                <button class="bg-primary hover:bg-primary-dark text-white text-sm font-medium px-5 py-2 rounded-md shadow-sm transition-colors">
+                    Simpan Jadwal
+                </button>
             </div>
         </header>
 
-        <div class="bg-white px-8 py-3 border-b border-gray-200 flex justify-between items-center shrink-0">
-            <div class="flex gap-2">
-                <button class="px-4 py-1.5 bg-primary/10 text-primary-dark font-medium text-sm rounded-md">Kelas 1</button>
-                <button class="px-4 py-1.5 text-gray-600 hover:bg-gray-50 font-medium text-sm rounded-md">Kelas 2</button>
+        <!-- SUB-HEADER (Info & Legend) -->
+        <div class="bg-gray-50 border-b border-gray-200 px-8 py-2.5 flex justify-between items-center shrink-0 z-0">
+            <div class="flex items-center gap-2 text-sm text-gray-500 italic">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
+                Geser tabel ke kanan untuk melihat kelas lainnya
             </div>
-            <div class="flex items-center gap-2 text-xs font-medium">
-                <span class="w-3 h-3 rounded-sm bg-blue-100 border border-blue-200"></span> Utama
-                <span class="w-3 h-3 rounded-sm bg-orange-100 border border-orange-200 ml-2"></span> Damping
-                <span class="w-3 h-3 rounded-sm bg-purple-100 border border-purple-200 ml-2"></span> Piket
+            <div class="flex items-center gap-4 text-xs font-medium text-gray-600">
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-blue-100 border border-blue-200"></span> Utama</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-orange-100 border border-orange-200"></span> Damping</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-purple-100 border border-purple-200"></span> Piket</div>
             </div>
         </div>
 
         <div class="flex-1 flex overflow-hidden">
             <!-- Schedule Grid -->
-            <div class="flex-1 overflow-auto custom-scrollbar p-6">
-                <table class="min-w-max w-full text-sm border-separate border-spacing-0">
+            <div class="flex-1 overflow-auto custom-scrollbar p-6 bg-cream">
+                <table class="min-w-max w-full text-sm border-separate border-spacing-0 shadow-sm bg-white rounded-lg">
                     <thead>
                         <tr>
-                            <th class="sticky top-0 left-0 z-20 bg-gray-100 border border-gray-300 px-3 py-2 w-20 text-center font-bold text-gray-600">Waktu</th>
-                            <th class="sticky top-0 z-10 bg-white border-t border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center shadow-sm">
+                            <th class="sticky top-0 left-0 z-30 bg-gray-100 border-b border-r border-gray-300 px-3 py-3 w-20 text-center font-bold text-gray-600 sticky-cell rounded-tl-lg">Waktu</th>
+                            <th class="sticky top-0 z-20 bg-white border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center sticky-cell">
                                 <div class="text-base">1A</div>
                                 <div class="text-xs font-normal text-status-pending">48/53 Jam</div>
                             </th>
-                            <th class="sticky top-0 z-10 bg-white border-t border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center shadow-sm">
+                            <th class="sticky top-0 z-20 bg-white border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center sticky-cell">
                                 <div class="text-base">1B</div>
                                 <div class="text-xs font-normal text-status-success">53/53 Jam</div>
                             </th>
-                            <th class="sticky top-0 z-10 bg-purple-50 border-t border-b border-r border-purple-200 px-4 py-2 font-bold text-purple-800 w-56 text-center shadow-sm">
+                            <th class="sticky top-0 z-20 bg-white border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center sticky-cell">
+                                <div class="text-base">2A</div>
+                                <div class="text-xs font-normal text-gray-500">12/53 Jam</div>
+                            </th>
+                            <th class="sticky top-0 z-20 bg-white border-b border-r border-gray-300 px-4 py-2 font-bold text-main w-56 text-center sticky-cell">
+                                <div class="text-base">2B</div>
+                                <div class="text-xs font-normal text-gray-500">24/53 Jam</div>
+                            </th>
+                            <th class="sticky top-0 z-20 bg-purple-50 border-b border-purple-200 px-4 py-2 font-bold text-purple-800 w-56 text-center sticky-cell rounded-tr-lg">
                                 <div class="text-base">Area Piket</div>
                                 <div class="text-xs font-normal text-purple-600">Tugas Harian</div>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="sticky left-0 z-10 bg-gray-50 border-l border-b border-r border-gray-300 font-bold text-gray-700 p-2 text-center" colspan="4">SENIN</td></tr>
+                        <tr><td class="sticky left-0 z-20 bg-gray-50 border-r border-b border-gray-300 font-bold text-gray-700 p-2 text-center sticky-cell" colspan="6">SENIN</td></tr>
 
                         <!-- JAM 1 -->
                         <tr>
-                            <td class="sticky left-0 z-10 bg-white border-l border-b border-r border-gray-300 px-2 py-3 text-center align-top"><div class="font-bold">1</div><div class="text-xs text-gray-500">07:00<br>07:35</div></td>
+                            <td class="sticky left-0 z-20 bg-white border-r border-b border-gray-300 px-2 py-3 text-center align-top sticky-cell">
+                                <div class="font-bold text-main">1</div><div class="text-xs text-gray-500">07:00<br>07:35</div>
+                            </td>
+                            <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
+                                <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
+                                <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
+                            </td>
                             <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
                                 <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
                                 <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
@@ -110,14 +129,24 @@
                                 <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
                                 <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
                             </td>
-                            <td class="border-b border-r border-gray-300 p-2 bg-purple-50/30 align-top">
+                            <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
+                                <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
+                                <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
+                            </td>
+                            <td class="border-b border-gray-300 p-2 bg-purple-50/30 align-top">
                                 <div class="dropzone h-full min-h-[84px] border border-dashed border-purple-300 rounded flex items-center justify-center text-xs text-purple-400 hover:bg-purple-100 cursor-pointer transition-all" data-drop-type="piket"><span class="placeholder-text">+ Tambah Piket</span></div>
                             </td>
                         </tr>
 
                         <!-- JAM 2 -->
                         <tr>
-                            <td class="sticky left-0 z-10 bg-white border-l border-b border-r border-gray-300 px-2 py-3 text-center align-top"><div class="font-bold">2</div><div class="text-xs text-gray-500">07:35<br>08:10</div></td>
+                            <td class="sticky left-0 z-20 bg-white border-r border-b border-gray-300 px-2 py-3 text-center align-top sticky-cell rounded-bl-lg">
+                                <div class="font-bold text-main">2</div><div class="text-xs text-gray-500">07:35<br>08:10</div>
+                            </td>
+                            <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
+                                <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
+                                <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
+                            </td>
                             <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
                                 <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
                                 <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
@@ -126,7 +155,11 @@
                                 <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
                                 <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
                             </td>
-                            <td class="border-b border-r border-gray-300 p-2 bg-purple-50/30 align-top">
+                            <td class="border-b border-r border-gray-300 p-2 bg-white align-top">
+                                <div class="dropzone border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center text-gray-400 hover:bg-blue-50 cursor-pointer mb-1 transition-all min-h-[48px]" data-drop-type="utama"><span class="placeholder-text text-xs font-medium">+ Drop Utama</span></div>
+                                <div class="dropzone border border-dashed border-gray-300 rounded flex items-center justify-center text-xs text-gray-400 hover:bg-orange-50 cursor-pointer transition-all min-h-[32px]" data-drop-type="damping"><span class="placeholder-text">+ Drop Damping</span></div>
+                            </td>
+                            <td class="border-b border-gray-300 p-2 bg-purple-50/30 align-top rounded-br-lg">
                                 <div class="dropzone h-full min-h-[84px] border border-dashed border-purple-300 rounded flex items-center justify-center text-xs text-purple-400 hover:bg-purple-100 cursor-pointer transition-all" data-drop-type="piket"><span class="placeholder-text">+ Tambah Piket</span></div>
                             </td>
                         </tr>
@@ -135,33 +168,28 @@
             </div>
 
             <!-- Panel Guru (Drag Source) -->
-            <aside class="w-[300px] bg-white border-l border-gray-200 flex flex-col shrink-0 shadow-[-4px_0_10px_rgba(0,0,0,0.02)] z-10">
-                <div class="p-4 border-b border-gray-200 bg-gray-50 flex flex-col gap-3">
+            <aside class="w-[320px] bg-white border-l border-gray-200 flex flex-col shrink-0 shadow-[-4px_0_10px_rgba(0,0,0,0.02)] z-20">
+                <div class="p-5 border-b border-gray-200 bg-gray-50 flex flex-col gap-4">
                     <div>
-                        <h3 class="font-bold text-main">Daftar Penugasan Guru</h3>
-                        <p class="text-[10px] text-gray-500" id="allocation-count">5 alokasi belum dijadwalkan</p>
+                        <h3 class="font-bold text-main text-base">Daftar Penugasan</h3>
+                        <p class="text-[11px] text-gray-500 mt-0.5" id="allocation-count">5 alokasi belum dijadwalkan</p>
                     </div>
                     
-                    <input type="text" id="search-input" placeholder="Cari guru atau mapel..." class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm shadow-sm focus:outline-none focus:border-primary">
+                    <div class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute left-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        <input type="text" id="search-input" placeholder="Cari guru atau mapel..." class="w-full pl-9 pr-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm focus:outline-none focus:border-primary transition-colors">
+                    </div>
 
-                    <!-- Filter Checkboxes -->
-                    <div class="flex items-center gap-3 text-xs font-medium text-gray-600">
-                        <label class="flex items-center gap-1 cursor-pointer hover:text-main">
-                            <input type="checkbox" checked value="utama" class="filter-type accent-primary"> Utama
-                        </label>
-                        <label class="flex items-center gap-1 cursor-pointer hover:text-main">
-                            <input type="checkbox" checked value="damping" class="filter-type accent-primary"> Damping
-                        </label>
-                        <label class="flex items-center gap-1 cursor-pointer hover:text-main">
-                            <input type="checkbox" checked value="piket" class="filter-type accent-primary"> Piket
-                        </label>
+                    <div class="flex items-center gap-4 text-xs font-medium text-gray-600">
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-main transition-colors"><input type="checkbox" checked value="utama" class="filter-type accent-primary w-3.5 h-3.5"> Utama</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-main transition-colors"><input type="checkbox" checked value="damping" class="filter-type accent-primary w-3.5 h-3.5"> Damping</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-main transition-colors"><input type="checkbox" checked value="piket" class="filter-type accent-primary w-3.5 h-3.5"> Piket</label>
                     </div>
                 </div>
 
-                <div id="source-zone-container" class="source-zone flex-1 overflow-y-auto p-4 custom-scrollbar bg-gray-50/50 min-h-[200px]">
-                    <!-- Group: Ayu (Dipasangkan dengan Lydia) -->
-                    <div class="guru-group mb-4" data-guru="Ayu (AY)">
-                        <h4 class="text-sm font-bold text-main mb-2 border-b border-gray-200 pb-1">Ayu <span class="text-xs font-normal text-gray-400">(AY)</span></h4>
+                <div id="source-zone-container" class="source-zone flex-1 overflow-y-auto p-5 custom-scrollbar bg-gray-50/50 min-h-[200px]">
+                    <div class="guru-group mb-5" data-guru="Ayu (AY)">
+                        <h4 class="text-sm font-bold text-main mb-2.5 border-b border-gray-200 pb-1">Ayu <span class="text-xs font-normal text-gray-400">(AY)</span></h4>
                         <div class="card-container flex flex-col gap-2">
                             <div class="draggable-card is-source bg-white border border-blue-200 rounded-md p-3 hover:border-blue-400 hover:shadow-md transition-all cursor-move relative" data-type="utama" data-guru="Ayu (AY)" draggable="true">
                                 <button class="delete-btn text-gray-400 hover:text-red-500 absolute top-2 right-2 text-lg leading-none">&times;</button>
@@ -177,9 +205,8 @@
                         </div>
                     </div>
 
-                    <!-- Group: Lydia (Pasangan Damping Ayu) -->
-                    <div class="guru-group mb-4" data-guru="Lydia (LYD)">
-                        <h4 class="text-sm font-bold text-main mb-2 border-b border-gray-200 pb-1">Lydia <span class="text-xs font-normal text-gray-400">(LYD)</span></h4>
+                    <div class="guru-group mb-5" data-guru="Lydia (LYD)">
+                        <h4 class="text-sm font-bold text-main mb-2.5 border-b border-gray-200 pb-1">Lydia <span class="text-xs font-normal text-gray-400">(LYD)</span></h4>
                         <div class="card-container flex flex-col gap-2">
                             <div class="draggable-card is-source bg-white border border-orange-200 rounded-md p-3 hover:border-orange-400 hover:shadow-md transition-all cursor-move relative" data-type="damping" data-guru="Lydia (LYD)" draggable="true">
                                 <button class="delete-btn text-gray-400 hover:text-red-500 absolute top-2 right-2 text-lg leading-none">&times;</button>
@@ -195,9 +222,8 @@
                         </div>
                     </div>
 
-                    <!-- Group: Angela -->
-                    <div class="guru-group mb-4" data-guru="Angela (A)">
-                        <h4 class="text-sm font-bold text-main mb-2 border-b border-gray-200 pb-1">Angela <span class="text-xs font-normal text-gray-400">(A)</span></h4>
+                    <div class="guru-group mb-5" data-guru="Angela (A)">
+                        <h4 class="text-sm font-bold text-main mb-2.5 border-b border-gray-200 pb-1">Angela <span class="text-xs font-normal text-gray-400">(A)</span></h4>
                         <div class="card-container flex flex-col gap-2">
                             <div class="draggable-card is-source bg-white border border-blue-200 rounded-md p-3 hover:border-blue-400 hover:shadow-md transition-all cursor-move relative" data-type="utama" data-guru="Angela (A)" draggable="true">
                                 <button class="delete-btn text-gray-400 hover:text-red-500 absolute top-2 right-2 text-lg leading-none">&times;</button>
@@ -213,9 +239,8 @@
                         </div>
                     </div>
 
-                    <!-- Group: Devi -->
-                    <div class="guru-group mb-4" data-guru="Devi (DV)">
-                        <h4 class="text-sm font-bold text-main mb-2 border-b border-gray-200 pb-1">Devi <span class="text-xs font-normal text-gray-400">(DV)</span></h4>
+                    <div class="guru-group mb-5" data-guru="Devi (DV)">
+                        <h4 class="text-sm font-bold text-main mb-2.5 border-b border-gray-200 pb-1">Devi <span class="text-xs font-normal text-gray-400">(DV)</span></h4>
                         <div class="card-container flex flex-col gap-2">
                             <div class="draggable-card is-source bg-white border border-purple-200 rounded-md p-3 hover:border-purple-400 hover:shadow-md transition-all cursor-move relative" data-type="piket" data-guru="Devi (DV)" draggable="true">
                                 <button class="delete-btn text-gray-400 hover:text-red-500 absolute top-2 right-2 text-lg leading-none">&times;</button>
@@ -235,41 +260,50 @@
         </div>
     </main>
 
-    <!-- JS Logic -->
+    <div id="modal-confirm" class="fixed inset-0 z-50 bg-gray-900/50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-sm overflow-hidden transform transition-all">
+            <div class="p-6">
+                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">
+                    <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-center text-main mb-2">Hapus Penugasan?</h3>
+                <p class="text-sm text-center text-gray-500">Tindakan ini akan menghapus kartu secara permanen dari daftar tugas. Anda yakin?</p>
+            </div>
+            <div class="px-6 py-4 bg-gray-50 flex gap-3 justify-end">
+                <button id="btn-cancel-delete" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">Batal</button>
+                <button id="btn-confirm-delete" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // MASTER DATA PASANGAN 
-            const MASTER_PASANGAN = {
-                "Ayu (AY)": "Lydia (LYD)" // Jika Ayu ditarik, otomatis Lydia ikut
-            };
+            const MASTER_PASANGAN = { "Ayu (AY)": "Lydia (LYD)" };
+            let cardToDelete = null;
+            const modalConfirm = document.getElementById('modal-confirm');
+            const btnConfirmDelete = document.getElementById('btn-confirm-delete');
+            const btnCancelDelete = document.getElementById('btn-cancel-delete');
 
             function updateSisaAlokasi(cardElement, change) {
                 const guru = cardElement.getAttribute('data-guru');
                 const type = cardElement.getAttribute('data-type');
                 const ket = cardElement.querySelector('.search-text').textContent;
-
                 const sourceCards = document.querySelectorAll('.source-zone .is-source');
                 let matchedSourceCard = null;
-                
                 for (let sc of sourceCards) {
-                    if (sc.getAttribute('data-guru') === guru && 
-                        sc.getAttribute('data-type') === type && 
-                        sc.querySelector('.search-text').textContent === ket) {
-                        matchedSourceCard = sc;
-                        break;
+                    if (sc.getAttribute('data-guru') === guru && sc.getAttribute('data-type') === type && sc.querySelector('.search-text').textContent === ket) {
+                        matchedSourceCard = sc; break;
                     }
                 }
-
                 if (matchedSourceCard) {
                     const jamEl = matchedSourceCard.querySelector('.jam-text');
                     if (jamEl) {
                         let currentJam = parseInt(jamEl.textContent) || 0;
                         let newJam = currentJam + change;
-                        
                         if(newJam < 0) newJam = 0; 
                         jamEl.textContent = newJam + ' Jam';
-                        
                         if (newJam === 0) {
                             jamEl.classList.remove('text-primary');
                             jamEl.classList.add('text-red-500'); 
@@ -288,20 +322,19 @@
             }
 
             function filterCards() {
-                const searchTerm = document.getElementById('search-input').value.toLowerCase();
+                const searchInput = document.getElementById('search-input');
+                if (!searchInput) return;
+                const searchTerm = searchInput.value.toLowerCase();
                 const activeTypes = Array.from(document.querySelectorAll('.filter-type:checked')).map(cb => cb.value);
                 let visibleCount = 0;
-
                 document.querySelectorAll('.guru-group').forEach(group => {
                     let hasVisibleCard = false;
                     group.querySelectorAll('.draggable-card').forEach(card => {
                         const type = card.getAttribute('data-type');
                         const guruName = card.getAttribute('data-guru').toLowerCase();
                         const keterangan = card.querySelector('.search-text').textContent.toLowerCase();
-                        
                         const matchesSearch = guruName.includes(searchTerm) || keterangan.includes(searchTerm);
                         const matchesType = activeTypes.includes(type);
-
                         if (matchesSearch && matchesType) {
                             card.style.display = 'block';
                             hasVisibleCard = true;
@@ -312,24 +345,17 @@
                     });
                     group.style.display = hasVisibleCard ? 'block' : 'none';
                 });
-
-                document.getElementById('allocation-count').textContent = `${visibleCount} alokasi belum dijadwalkan`;
+                const countElement = document.getElementById('allocation-count');
+                if(countElement) { countElement.textContent = `${visibleCount} alokasi belum dijadwalkan`; }
             }
 
-            document.getElementById('search-input').addEventListener('input', filterCards);
-            document.querySelectorAll('.filter-type').forEach(cb => {
-                cb.addEventListener('change', filterCards);
-            });
+            const searchInputEl = document.getElementById('search-input');
+            if(searchInputEl) { searchInputEl.addEventListener('input', filterCards); }
+            document.querySelectorAll('.filter-type').forEach(cb => { cb.addEventListener('change', filterCards); });
 
-            // --- LOGIKA DRAG AND DROP ---
             let draggedElement = null;
-
             document.addEventListener('dragstart', (e) => {
-                if (e.target.getAttribute('draggable') === 'false') {
-                    e.preventDefault();
-                    return;
-                }
-
+                if (e.target.getAttribute('draggable') === 'false') { e.preventDefault(); return; }
                 if (e.target.classList && e.target.classList.contains('draggable-card')) {
                     draggedElement = e.target;
                     setTimeout(() => draggedElement.classList.add('dragging'), 0);
@@ -344,56 +370,63 @@
                 }
             });
 
-            // Hapus Card
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('delete-btn')) {
                     const card = e.target.closest('.draggable-card');
                     if (card) {
-                        const group = card.closest('.guru-group');
-                        const cardType = card.getAttribute('data-type');
-                        const parentTd = card.closest('td'); 
-                        
-                        // Konfirmasi Hapus untuk Kartu di Sidebar
                         if (card.classList.contains('is-source')) {
-                            const confirmDelete = confirm("Yakin ingin menghapus penugasan ini secara permanen dari daftar?");
-                            if (!confirmDelete) return; 
+                            cardToDelete = card;
+                            modalConfirm.classList.remove('hidden');
+                            modalConfirm.classList.add('flex');
+                        } else {
+                            executeDelete(card);
                         }
-
-                        // Jika kartu dihapus dari grid jadwal
-                        if (!card.classList.contains('is-source')) {
-                            updateSisaAlokasi(card, +1);
-
-                            // Jika menghapus kartu UTAMA, otomatis hapus DAMPING-nya
-                            if (cardType === 'utama' && parentTd) {
-                                const dampingZone = parentTd.querySelector('[data-drop-type="damping"]');
-                                const dampingCard = dampingZone ? dampingZone.querySelector('.draggable-card') : null;
-                                if (dampingCard) {
-                                    updateSisaAlokasi(dampingCard, +1);
-                                    dampingCard.remove();
-                                }
-                            }
-                        }
-
-                        card.remove();
-                        
-                        if (group && group.querySelectorAll('.draggable-card').length === 0) {
-                            group.remove();
-                        }
-                        
-                        updateDropzones();
-                        filterCards();
                     }
                 }
             });
 
-            const dropzones = document.querySelectorAll('.dropzone, .source-zone');
+            btnCancelDelete.addEventListener('click', () => {
+                modalConfirm.classList.add('hidden');
+                modalConfirm.classList.remove('flex');
+                cardToDelete = null;
+            });
 
+            btnConfirmDelete.addEventListener('click', () => {
+                if (cardToDelete) {
+                    executeDelete(cardToDelete);
+                    cardToDelete = null;
+                }
+                modalConfirm.classList.add('hidden');
+                modalConfirm.classList.remove('flex');
+            });
+
+            function executeDelete(card) {
+                const group = card.closest('.guru-group');
+                const cardType = card.getAttribute('data-type');
+                const parentTd = card.closest('td'); 
+                if (!card.classList.contains('is-source')) {
+                    updateSisaAlokasi(card, +1);
+                    if (cardType === 'utama' && parentTd) {
+                        const dampingZone = parentTd.querySelector('[data-drop-type="damping"]');
+                        const dampingCard = dampingZone ? dampingZone.querySelector('.draggable-card') : null;
+                        if (dampingCard) {
+                            updateSisaAlokasi(dampingCard, +1);
+                            dampingCard.remove();
+                        }
+                    }
+                }
+                card.remove();
+                if (group && group.querySelectorAll('.draggable-card').length === 0) { group.remove(); }
+                updateDropzones();
+                filterCards();
+            }
+
+            const dropzones = document.querySelectorAll('.dropzone, .source-zone');
             dropzones.forEach(zone => {
                 zone.addEventListener('dragover', e => {
                     if(draggedElement) {
                         const targetDropType = zone.getAttribute('data-drop-type');
                         const cardType = draggedElement.getAttribute('data-type');
-                        
                         if (zone.classList.contains('source-zone') || targetDropType === cardType) {
                             e.preventDefault(); 
                             zone.classList.add('drag-over');
@@ -401,25 +434,18 @@
                     }
                 });
 
-                zone.addEventListener('dragleave', () => {
-                    zone.classList.remove('drag-over');
-                });
+                zone.addEventListener('dragleave', () => { zone.classList.remove('drag-over'); });
 
                 zone.addEventListener('drop', e => {
                     e.preventDefault();
                     zone.classList.remove('drag-over');
-
                     if (draggedElement) {
                         if (zone.classList.contains('source-zone')) {
-                            
                             if (!draggedElement.classList.contains('is-source')) {
                                 const cardType = draggedElement.getAttribute('data-type');
                                 const parentTd = draggedElement.closest('td');
-
                                 updateSisaAlokasi(draggedElement, +1); 
                                 draggedElement.remove(); 
-
-                                // Jika mengembalikan kartu UTAMA, otomatis kembalikan DAMPING-nya
                                 if (cardType === 'utama' && parentTd) {
                                     const dampingZone = parentTd.querySelector('[data-drop-type="damping"]');
                                     const dampingCard = dampingZone ? dampingZone.querySelector('.draggable-card') : null;
@@ -430,22 +456,17 @@
                                 }
                                 filterCards();
                             }
-
                         } else {
                             let nodeToAppend = draggedElement;
-
                             if (draggedElement.classList.contains('is-source')) {
                                 nodeToAppend = draggedElement.cloneNode(true);
                                 nodeToAppend.classList.remove('is-source', 'dragging');
                                 updateSisaAlokasi(draggedElement, -1); 
                             }
-
                             nodeToAppend.classList.add('w-full', 'h-full', 'p-2');
-                            nodeToAppend.classList.remove('p-3', 'bg-white');
-
+                            nodeToAppend.classList.remove('p-3', 'bg-white', 'shadow-md');
                             const sisaInfo = nodeToAppend.querySelector('.sisa-alokasi');
                             if(sisaInfo) sisaInfo.style.display = 'none';
-
                             const type = nodeToAppend.getAttribute('data-type');
                             if (type === 'utama') {
                                 nodeToAppend.classList.add('bg-blue-50');
@@ -456,38 +477,27 @@
                                 nodeToAppend.classList.add('bg-purple-100', 'border-purple-300');
                                 nodeToAppend.classList.remove('border-purple-200');
                             }
-
                             const existingCard = zone.querySelector('.draggable-card');
                             if (existingCard && existingCard !== nodeToAppend) {
                                 updateSisaAlokasi(existingCard, +1); 
                                 existingCard.remove(); 
                             }
-
                             zone.appendChild(nodeToAppend);
-
-                            // AUTO-DROP GURU DAMPING JIKA ADA PASANGANNYA
                             if (type === 'utama') {
                                 const guruUtama = nodeToAppend.getAttribute('data-guru');
                                 const pasanganDamping = MASTER_PASANGAN[guruUtama]; 
-
                                 if (pasanganDamping) {
                                     const parentTd = zone.closest('td');
                                     const dropzoneDamping = parentTd.querySelector('[data-drop-type="damping"]');
-
                                     if (dropzoneDamping && !dropzoneDamping.querySelector('.draggable-card')) {
-                                        
                                         const dampingSource = document.querySelector(`.source-zone .is-source[data-type="damping"][data-guru="${pasanganDamping}"]`);
-
                                         if (dampingSource && parseInt(dampingSource.querySelector('.jam-text').textContent) > 0) {
-                                            
                                             let clonedDamping = dampingSource.cloneNode(true);
                                             clonedDamping.classList.remove('is-source', 'dragging');
                                             clonedDamping.classList.add('w-full', 'h-full', 'p-2', 'bg-orange-50', 'border-orange-300');
-                                            clonedDamping.classList.remove('p-3', 'bg-white', 'border-orange-200');
-
+                                            clonedDamping.classList.remove('p-3', 'bg-white', 'border-orange-200', 'shadow-md');
                                             const sisaInfoDamping = clonedDamping.querySelector('.sisa-alokasi');
                                             if (sisaInfoDamping) sisaInfoDamping.style.display = 'none';
-
                                             dropzoneDamping.appendChild(clonedDamping);
                                             updateSisaAlokasi(dampingSource, -1); 
                                         }
@@ -504,7 +514,6 @@
                 document.querySelectorAll('.dropzone').forEach(zone => {
                     const placeholder = zone.querySelector('.placeholder-text');
                     const hasCard = zone.querySelector('.draggable-card');
-
                     if (hasCard) {
                         if (placeholder) placeholder.style.display = 'none';
                         zone.style.borderStyle = 'solid';

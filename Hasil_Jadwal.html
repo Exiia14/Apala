@@ -31,7 +31,8 @@
 </head>
 <body class="bg-cream text-main font-sans antialiased flex h-screen overflow-hidden">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-10 shadow-sm shrink-0">
+    <!-- Sidebar Layout -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-20 shadow-sm shrink-0">
         <div class="p-6 border-b border-gray-200">
             <h1 class="text-xl font-bold text-primary-dark leading-tight">SD Plus<br>Gembala Baik</h1>
             <p class="text-xs text-gray-500 mt-1">Manajemen Akademik</p>
@@ -41,27 +42,30 @@
             <a href="Waktu-Pelajaran.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Waktu Pelajaran</a>
             <a href="KisiKisiTugas.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Kisi-Kisi Tugas</a>
             <a href="Pembagian-Jadwal-Guru.html" class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm font-medium border-l-4 border-transparent">Pembagian Jadwal</a>
-            <!-- Menu Hasil Jadwal Aktif -->
             <a href="Hasil-Jadwal.html" class="flex items-center px-3 py-2 bg-primary/10 text-primary-dark rounded-md text-sm font-medium border-l-4 border-primary">Hasil Jadwal</a>
         </nav>
     </aside>
 
-    <main class="flex-1 flex flex-col overflow-hidden">
-        <header class="bg-white border-b border-gray-200 px-8 py-4 flex flex-col gap-1 shadow-sm z-0 shrink-0">
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col overflow-hidden h-full">
+        <!-- HEADER UTAMA -->
+        <header class="bg-white border-b border-gray-200 px-8 py-4 flex flex-col justify-center shadow-sm shrink-0 z-10">
             <h2 class="text-2xl font-bold text-primary-dark">Hasil Jadwal</h2>
-            <p class="text-sm text-gray-500">Lihat jadwal pelajaran untuk setiap kelas, cetak, atau export ke Excel.</p>
+            <p class="text-sm text-gray-500 mt-1">Lihat jadwal pelajaran untuk setiap kelas, cetak, atau export ke Excel.</p>
         </header>
 
+        <!-- Content Body -->
         <div class="flex-1 overflow-auto custom-scrollbar p-6 space-y-6">
             <div class="max-w-6xl mx-auto space-y-6">
                 
+                <!-- Toggle Mode View -->
                 <div class="flex p-1 bg-gray-200/60 rounded-lg w-full max-w-2xl mx-auto shadow-inner">
-                    <button class="flex-1 py-2 text-sm font-bold bg-primary text-white rounded-md shadow transition-all">Per Kelas</button>
-                    <button class="flex-1 py-2 text-sm font-bold text-gray-600 hover:text-main transition-all">Per Guru</button>
+                    <button class="flex-1 py-2 text-sm font-bold bg-primary text-white rounded-md shadow transition-colors">Per Kelas</button>
+                    <button class="flex-1 py-2 text-sm font-bold text-gray-600 hover:text-main transition-colors">Per Guru</button>
                 </div>
 
+                <!-- Panel Detail Kelas -->
                 <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-5 space-y-5">
-                    
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-4">
                         <div>
                             <h3 class="text-xl font-bold text-main">Kelas 1A</h3>
@@ -69,7 +73,7 @@
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="flex bg-gray-100 rounded border border-gray-200 p-0.5">
-                                <button class="px-3 py-1.5 bg-white shadow-sm rounded text-xs font-bold text-primary border border-gray-200 flex items-center gap-1.5">
+                                <button class="px-3 py-1.5 bg-white shadow-sm rounded text-xs font-bold text-primary border border-gray-200 flex items-center gap-1.5 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                                     Tabel
                                 </button>
@@ -78,7 +82,7 @@
                                     Kalender
                                 </button>
                             </div>
-                            <select class="px-3 py-1.5 bg-white border border-gray-300 rounded text-sm text-gray-700 focus:outline-none focus:border-primary w-48 shadow-sm">
+                            <select class="px-3 py-1.5 bg-white border border-gray-300 rounded text-sm text-gray-700 focus:outline-none focus:border-primary w-48 shadow-sm transition-colors">
                                 <option>Kelas 1 - 1A (30 siswa)</option>
                                 <option>Kelas 1 - 1B (28 siswa)</option>
                                 <option>Kelas 2 - 2A (32 siswa)</option>
@@ -119,6 +123,7 @@
                     </div>
                 </div>
 
+                <!-- Schedule Table Result -->
                 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
                     <div class="p-4 border-b border-gray-200 bg-gray-50">
                         <h4 class="font-bold text-main">Kelas 1 - 1A</h4>
@@ -137,7 +142,7 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             
                             <!-- HARI SENIN -->
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td rowspan="7" class="px-6 py-4 font-bold text-main align-top bg-gray-50/30 border-r border-gray-100">Senin</td>
                                 <td class="px-6 py-3 font-medium text-center">1</td>
                                 <td class="px-6 py-3 text-gray-600">07:00 - 07:35</td>
@@ -147,7 +152,7 @@
                                 </td>
                                 <td class="px-6 py-3 font-medium text-gray-700">TIK</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-3 font-medium text-center border-t border-gray-100">2</td>
                                 <td class="px-6 py-3 text-gray-600 border-t border-gray-100">07:35 - 08:10</td>
                                 <td class="px-6 py-3 border-t border-gray-100">
@@ -156,7 +161,7 @@
                                 </td>
                                 <td class="px-6 py-3 font-medium text-gray-700 border-t border-gray-100">TIK</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-3 font-medium text-center border-t border-gray-100">3</td>
                                 <td class="px-6 py-3 text-gray-600 border-t border-gray-100">08:10 - 08:45</td>
                                 <td class="px-6 py-3 border-t border-gray-100">
@@ -165,7 +170,7 @@
                                 </td>
                                 <td class="px-6 py-3 font-medium text-gray-700 border-t border-gray-100">TIK</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-3 font-medium text-center border-t border-gray-100">4</td>
                                 <td class="px-6 py-3 text-gray-600 border-t border-gray-100">08:45 - 09:20</td>
                                 <td class="px-6 py-3 border-t border-gray-100">
@@ -176,13 +181,13 @@
                             </tr>
                             
                             <!-- BREAK ROW -->
-                            <tr class="bg-orange-50/60">
+                            <tr class="bg-orange-50/60 transition-colors">
                                 <td class="px-6 py-2 font-medium text-center text-gray-400 border-t border-orange-100">-</td>
                                 <td class="px-6 py-2 text-orange-800 font-medium border-t border-orange-100">09:20 - 09:35</td>
                                 <td colspan="2" class="px-6 py-2 text-center font-bold text-orange-800 tracking-widest border-t border-orange-100">ISTIRAHAT 1</td>
                             </tr>
 
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-3 font-medium text-center border-t border-gray-100">5</td>
                                 <td class="px-6 py-3 text-gray-600 border-t border-gray-100">09:35 - 10:10</td>
                                 <td class="px-6 py-3 border-t border-gray-100">
@@ -191,7 +196,7 @@
                                 </td>
                                 <td class="px-6 py-3 font-medium text-gray-700 border-t border-gray-100">Mandarin</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-3 font-medium text-center border-t border-gray-100">6</td>
                                 <td class="px-6 py-3 text-gray-600 border-t border-gray-100">10:10 - 10:45</td>
                                 <td class="px-6 py-3 border-t border-gray-100">
